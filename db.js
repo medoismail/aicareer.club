@@ -1,7 +1,7 @@
 // db.js
 const mongoose = require('mongoose');
 
-const MONGODB_URI = 'mongodb://localhost/job-listings';
+const MONGODB_URI = 'mongodb+srv://aicarrer:9yvP59AKbbtM8qDU@cluster0.vzefjz7.mongodb.net/';
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,

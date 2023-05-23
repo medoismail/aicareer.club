@@ -9,10 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 5000;
-
 // Set up MongoDB connection
-mongoose.connect('mongodb://localhost/job-listings', {
+mongoose.connect('mongodb+srv://aicarrer:9yvP59AKbbtM8qDU@cluster0.vzefjz7.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -33,8 +31,6 @@ const upload = multer({ storage });
 
 // Set up Nodemailer for sending emails
 const transporter = nodemailer.createTransport({
-  // Set up your email configuration
-  // For example, using Gmail SMTP:
   service: 'Gmail',
   auth: {
     user: 'your-email@gmail.com',
@@ -43,12 +39,11 @@ const transporter = nodemailer.createTransport({
 });
 
 // Define the route for submitting job listings
-app.post('/api/job-listings', upload.single('logo'), (req, res) => {
+app.post('/api/aicarrers', upload.single('logo'), (req, res) => {
   const { title, description, email } = req.body;
   const logoPath = req.file.path;
 
-  // Save the job listing to the database
-  // You need to create a JobListing model and define the schema for job listings
+  // Save the job listing to the database (you need to create a JobListing model)
 
   // Send email notification to the provided email address
   const mailOptions = {
@@ -79,6 +74,8 @@ app.post('/api/job-listings', upload.single('logo'), (req, res) => {
   res.status(201).json({ message: 'Job listing submitted successfully' });
 });
 
+// Start the server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

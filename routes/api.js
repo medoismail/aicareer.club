@@ -4,7 +4,7 @@ const router = express.Router();
 const JobListing = require('../models/JobListing');
 
 // Create a new job listing
-router.post('/job-listings', async (req, res) => {
+router.post('/aicarrers', async (req, res) => {
   try {
     const jobListing = new JobListing(req.body);
     await jobListing.save();
@@ -15,7 +15,7 @@ router.post('/job-listings', async (req, res) => {
 });
 
 // Get all job listings
-router.get('/job-listings', async (req, res) => {
+router.get('/aicarrers', async (req, res) => {
   try {
     const jobListings = await JobListing.find();
     res.json(jobListings);
